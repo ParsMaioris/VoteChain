@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, TouchableOpacity, StyleSheet} from 'react-native';
-import {Screen} from '../../App';
+import {Screen} from '../../../App';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 const BottomNavigationBar: React.FC<{

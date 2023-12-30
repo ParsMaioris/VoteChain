@@ -12,7 +12,7 @@ import {
   getCurrentAddress,
   getPrivateKey,
 } from '../../assets/mock/WalletService_Mock';
-import {commonStyles} from '../layout/CommonStyles';
+import {commonStyles} from './common/CommonStyles';
 
 const WalletManagementScreen: React.FC = () => {
   const [address, setAddress] = useState('');

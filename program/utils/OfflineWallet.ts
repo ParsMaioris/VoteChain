@@ -53,4 +53,27 @@ class OfflineWalletKeychainStore {
   }
 }
 
-export {OfflineWallet, OfflineWalletFactory, OfflineWalletKeychainStore};
+class OfflineWalletManager {
+  static async getOrCreateWallet(): Promise<OfflineWallet> {
+    try {
+      const existingWallet = await OfflineWalletKeychainStore.load();
+      if (existingWallet) {
+        return existingWallet;
+      } else {
+        const newWallet = OfflineWalletFactory.create();
+        await OfflineWalletKeychainStore.save(newWallet);
+        return newWallet;
+      }
+    } catch (error) {
+      console.error('Error in getOrCreateWallet:', error);
+      throw error;
+    }
+  }
+}
+
+export {
+  OfflineWallet,
+  OfflineWalletFactory,
+  OfflineWalletKeychainStore,
+  OfflineWalletManager,
+};

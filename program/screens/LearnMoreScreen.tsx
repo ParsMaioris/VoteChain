@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text, ScrollView, StyleSheet} from 'react-native';
 import Referendum from '../domain/Referendum';
-import BackArrowHeader from '../layout/BackArrowHeader';
+import BackArrowHeader from './common/BackArrowHeader';
 
 interface LearnMoreProps {
   referendum: Referendum;

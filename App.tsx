@@ -5,7 +5,7 @@ import ReferendumsScreen from './program/screens/ReferendumScreen';
 import WalletManagementScreen from './program/screens/WalletManagementScreen';
 import {Provider} from 'react-redux';
 import {store} from './program/data/Store';
-import BottomNavigationBar from './program/layout/BottomNavigationBar';
+import BottomNavigationBar from './program/screens/common/BottomNavigationBar';
 
 export enum Screen {
   Home,

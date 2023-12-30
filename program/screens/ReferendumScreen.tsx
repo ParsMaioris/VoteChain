@@ -12,7 +12,7 @@ import {useSelector} from 'react-redux';
 import {RootState} from '../data/store';
 import ReferendumPrompt from './ReferendumPromptScreen';
 import LearnMoreScreen from './LearnMoreScreen';
-import {commonStyles} from '../layout/CommonStyles';
+import {commonStyles} from './common/CommonStyles';
 
 const ReferendumsScreen: React.FC = () => {
   const referendums = useSelector(

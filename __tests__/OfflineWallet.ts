@@ -3,7 +3,7 @@ import {
   OfflineWallet,
   OfflineWalletFactory,
   OfflineWalletKeychainStore,
-} from '../program/services/WalletService';
+} from '../program/utils/OfflineWallet';
 import Keychain from 'react-native-keychain';
 
 jest.mock('react-native-keychain', () => ({

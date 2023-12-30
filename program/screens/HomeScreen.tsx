@@ -3,7 +3,7 @@ import {View, Text, Image, TouchableOpacity, StyleSheet} from 'react-native';
 import {Screen} from '../../App';
 import {getReferendums} from '../data/ReferendumSlice';
 import {useDispatch} from '../data/Hooks';
-import {commonStyles} from '../layout/CommonStyles';
+import {commonStyles} from './common/CommonStyles';
 
 interface HomeScreenProps {
   setCurrentScreen: (screen: Screen) => void;
