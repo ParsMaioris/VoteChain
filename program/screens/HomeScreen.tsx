@@ -3,6 +3,7 @@ import {View, Text, Image, TouchableOpacity, StyleSheet} from 'react-native';
 import {Screen} from '../../App';
 import {getReferendums} from '../data/ReferendumSlice';
 import {useDispatch} from '../data/Hooks';
+import {commonStyles} from '../layout/CommonStyles';
 
 interface HomeScreenProps {
   setCurrentScreen: (screen: Screen) => void;
@@ -38,11 +39,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({setCurrentScreen}) => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
+  container: commonStyles.container,
   imageContainer: {
     justifyContent: 'center',
     alignItems: 'center',
@@ -54,9 +51,7 @@ const styles = StyleSheet.create({
     marginBottom: 32,
   },
   title: {
-    fontSize: 28,
-    fontWeight: 'bold',
-    textAlign: 'center',
+    ...commonStyles.title,
     marginBottom: 24,
   },
   buttonContainer: {

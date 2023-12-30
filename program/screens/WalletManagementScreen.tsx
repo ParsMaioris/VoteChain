@@ -100,19 +100,16 @@ const WalletManagementScreen: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     ...commonStyles.container,
-    backgroundColor: '#F4F4F4',
   },
   title: {
     ...commonStyles.title,
-    color: '#1A237E',
+    marginBottom: 32,
   },
   button: {
     ...commonStyles.button,
-    backgroundColor: '#5C6BC0',
   },
   buttonText: {
     ...commonStyles.buttonText,
-    color: '#FFFFFF',
   },
   infoContainer: {
     alignItems: 'center',
@@ -120,11 +117,12 @@ const styles = StyleSheet.create({
   },
   infoLabel: {
     ...commonStyles.infoLabel,
-    color: '#1A237E',
+    marginBottom: 5,
   },
   infoValue: {
     ...commonStyles.infoValue,
-    color: '#3949AB',
+    fontFamily: 'monospace',
+    marginBottom: 10,
   },
   privateKeyValue: {
     fontSize: 14,
