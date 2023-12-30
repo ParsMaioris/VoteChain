@@ -24,11 +24,26 @@ const WalletManagementScreen: React.FC = () => {
   }, []);
 
   const handleGenerateAddress = () => {
-    const newAddress = generateNewAddress();
-    setAddress(newAddress);
-    setPrivateKey('');
-    setIsKeyVisible(false);
-    Alert.alert('New Address Generated', newAddress);
+    Alert.alert(
+      'Generate New Key',
+      'Are you sure you want to generate a new key? Doing so may prevent you from participating in certain referendums with your current address.',
+      [
+        {
+          text: 'Cancel',
+          style: 'cancel',
+        },
+        {
+          text: 'OK',
+          onPress: () => {
+            const newAddress = generateNewAddress();
+            setAddress(newAddress);
+            setPrivateKey('');
+            setIsKeyVisible(false);
+          },
+        },
+      ],
+      {cancelable: false},
+    );
   };
 
   const toggleViewPrivateKey = () => {
