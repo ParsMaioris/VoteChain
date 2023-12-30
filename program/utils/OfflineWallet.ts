@@ -16,15 +16,14 @@ class OfflineWallet {
     return this.offlineEthersWallet.address;
   }
 
-  connect(provider: ethers.Provider): ethers.Wallet {
+  connect(provider: ethers.providers.Provider): ethers.Wallet {
     return this.offlineEthersWallet.connect(provider);
   }
 }
 
 class OfflineWalletFactory {
   static create(): OfflineWallet {
-    const randomHDNodeWallet = ethers.Wallet.createRandom();
-    const randomEthersWallet = new ethers.Wallet(randomHDNodeWallet.privateKey);
+    const randomEthersWallet = ethers.Wallet.createRandom();
     return new OfflineWallet(randomEthersWallet);
   }
 }
@@ -53,27 +52,4 @@ class OfflineWalletKeychainStore {
   }
 }
 
-class OfflineWalletManager {
-  static async getOrCreateWallet(): Promise<OfflineWallet> {
-    try {
-      const existingWallet = await OfflineWalletKeychainStore.load();
-      if (existingWallet) {
-        return existingWallet;
-      } else {
-        const newWallet = OfflineWalletFactory.create();
-        await OfflineWalletKeychainStore.save(newWallet);
-        return newWallet;
-      }
-    } catch (error) {
-      console.error('Error in getOrCreateWallet:', error);
-      throw error;
-    }
-  }
-}
-
-export {
-  OfflineWallet,
-  OfflineWalletFactory,
-  OfflineWalletKeychainStore,
-  OfflineWalletManager,
-};
+export {OfflineWallet, OfflineWalletFactory, OfflineWalletKeychainStore};

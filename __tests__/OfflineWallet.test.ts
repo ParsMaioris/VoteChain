@@ -45,7 +45,7 @@ jest.mock('ethers', () => {
     Wallet: jest.fn().mockImplementation(() => {
       return {
         connect: jest.fn().mockImplementation(provider => {
-          return {provider: provider, connected: true}; // Simulating a connected wallet
+          return {provider: provider, connected: true};
         }),
         privateKey: privateKey,
         address: 'mockAddress',
@@ -55,10 +55,12 @@ jest.mock('ethers', () => {
 });
 
 describe('EthereumWallet', () => {
-  let mockProvider: ethers.JsonRpcProvider;
+  let mockProvider: ethers.providers.JsonRpcProvider;
 
   beforeEach(() => {
-    mockProvider = new ethers.JsonRpcProvider('http://mockprovider.com');
+    mockProvider = new ethers.providers.JsonRpcProvider(
+      'http://mockprovider.com',
+    );
   });
 
   it('should connect to the provided Ethereum network provider', async () => {
