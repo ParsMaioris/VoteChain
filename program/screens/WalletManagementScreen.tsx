@@ -12,6 +12,7 @@ import {
   getCurrentAddress,
   getPrivateKey,
 } from '../services/WalletService';
+import {commonStyles} from '../layout/CommonStyles';
 
 const WalletManagementScreen: React.FC = () => {
   const [address, setAddress] = useState('');
@@ -98,42 +99,32 @@ const WalletManagementScreen: React.FC = () => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 20,
+    ...commonStyles.container,
     backgroundColor: '#F4F4F4',
   },
   title: {
-    fontSize: 26,
-    fontWeight: 'bold',
+    ...commonStyles.title,
     color: '#1A237E',
-    marginBottom: 30,
   },
   button: {
+    ...commonStyles.button,
     backgroundColor: '#5C6BC0',
-    padding: 12,
-    borderRadius: 6,
-    marginBottom: 20,
   },
   buttonText: {
+    ...commonStyles.buttonText,
     color: '#FFFFFF',
-    fontSize: 18,
   },
   infoContainer: {
     alignItems: 'center',
     marginTop: 20,
   },
   infoLabel: {
-    fontSize: 18,
+    ...commonStyles.infoLabel,
     color: '#1A237E',
-    marginBottom: 5,
   },
   infoValue: {
-    fontSize: 16,
+    ...commonStyles.infoValue,
     color: '#3949AB',
-    marginBottom: 10,
-    fontFamily: 'monospace',
   },
   privateKeyValue: {
     fontSize: 14,
@@ -143,17 +134,15 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#BDBDBD',
     borderRadius: 5,
-    fontFamily: 'monospace',
+    marginBottom: 10,
   },
   copyButton: {
+    ...commonStyles.button,
     backgroundColor: '#FFC107',
-    padding: 10,
-    borderRadius: 6,
-    marginTop: 10,
   },
   copyButtonText: {
+    ...commonStyles.buttonText,
     color: '#212121',
-    fontSize: 16,
   },
 });
 
