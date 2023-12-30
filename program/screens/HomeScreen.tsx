@@ -30,7 +30,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({setCurrentScreen}) => {
           <Text style={styles.buttonText}>Go to Referendums</Text>
         </TouchableOpacity>
       </View>
-      <TouchableOpacity onPress={() => setCurrentScreen(Screen.UserProfile)}>
+      <TouchableOpacity onPress={() => setCurrentScreen(Screen.WalletManagent)}>
         <Text style={styles.buttonText}>Manage Profile</Text>
       </TouchableOpacity>
     </View>

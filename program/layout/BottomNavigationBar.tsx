@@ -14,7 +14,7 @@ const BottomNavigationBar: React.FC<{
       <TouchableOpacity onPress={() => setCurrentScreen(Screen.Referendums)}>
         <Icon name="list-outline" size={24} color="black" />
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => setCurrentScreen(Screen.UserProfile)}>
+      <TouchableOpacity onPress={() => setCurrentScreen(Screen.WalletManagent)}>
         <Icon name="person-outline" size={24} color="black" />
       </TouchableOpacity>
     </View>

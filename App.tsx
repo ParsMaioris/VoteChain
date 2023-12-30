@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {StyleSheet, View, SafeAreaView} from 'react-native';
 import HomeScreen from './program/screens/HomeScreen';
 import ReferendumsScreen from './program/screens/ReferendumScreen';
-import UserProfileScreen from './program/screens/UserProfileScreen'; // Import UserProfileScreen
+import WalletManagementScreen from './program/screens/WalletManagementScreen';
 import {Provider} from 'react-redux';
 import {store} from './program/data/Store';
 import BottomNavigationBar from './program/layout/BottomNavigationBar';
@@ -10,7 +10,7 @@ import BottomNavigationBar from './program/layout/BottomNavigationBar';
 export enum Screen {
   Home,
   Referendums,
-  UserProfile,
+  WalletManagent,
   LearnMoreScreen,
 }
 
@@ -26,8 +26,8 @@ const App = () => {
     case Screen.Referendums:
       screenComponent = <ReferendumsScreen />;
       break;
-    case Screen.UserProfile:
-      screenComponent = <UserProfileScreen />;
+    case Screen.WalletManagent:
+      screenComponent = <WalletManagementScreen />;
       break;
   }
 
