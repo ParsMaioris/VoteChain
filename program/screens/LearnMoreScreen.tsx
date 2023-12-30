@@ -1,17 +1,17 @@
 import React from 'react';
-import { View, Text, ScrollView, StyleSheet } from 'react-native';
-import Referendum from '../domain/Referendum'; 
-import BackArrowHeader from '../layout/ReferendumDetailHeader'; 
+import {View, Text, ScrollView, StyleSheet} from 'react-native';
+import Referendum from '../domain/Referendum';
+import BackArrowHeader from '../layout/BackArrowHeader';
 
 interface LearnMoreProps {
   referendum: Referendum;
   onClose: () => void;
 }
 
-const LearnMoreScreen: React.FC<LearnMoreProps> = ({ referendum, onClose }) => {
+const LearnMoreScreen: React.FC<LearnMoreProps> = ({referendum, onClose}) => {
   return (
-    <View style={{ flex: 1 }}>
-      <BackArrowHeader onBackPress={onClose} text={"Referendums"}/>
+    <View style={{flex: 1}}>
+      <BackArrowHeader onBackPress={onClose} text={'Referendums'} />
       <ScrollView style={styles.container}>
         <Text style={styles.title}>{referendum.title}</Text>
         <Text style={styles.description}>{referendum.details}</Text>
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     backgroundColor: 'white',
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 1 },
+    shadowOffset: {width: 0, height: 1},
     shadowOpacity: 0.22,
     shadowRadius: 2.22,
     elevation: 3,

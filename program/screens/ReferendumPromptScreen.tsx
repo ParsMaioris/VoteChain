@@ -1,37 +1,46 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
 import Referendum from '../domain/Referendum';
-import BackArrowHeader from '../layout/ReferendumDetailHeader';
-import { useDispatch } from '../data/Hooks';
-import { castVote } from '../data/ReferendumSlice';
+import BackArrowHeader from '../layout/BackArrowHeader';
+import {useDispatch} from '../data/Hooks';
+import {castVote} from '../data/ReferendumSlice';
 
 interface ReferendumPromptProps {
   referendum: Referendum;
   onClose: () => void;
 }
 
-const ReferendumPrompt: React.FC<ReferendumPromptProps> = ({ referendum, onClose }) => {
+const ReferendumPrompt: React.FC<ReferendumPromptProps> = ({
+  referendum,
+  onClose,
+}) => {
   const dispatch = useDispatch();
 
   const handleVote = (referendum: Referendum, vote: 'yes' | 'no') => {
-    dispatch(castVote({ referendum, vote }));
+    dispatch(castVote({referendum, vote}));
   };
 
   return (
-    <View style={{ flex: 1 }}>
+    <View style={{flex: 1}}>
       <BackArrowHeader onBackPress={onClose} text="Referendums" />
       <View style={styles.container}>
-        <Text style={{ ...styles.title, marginTop: 20 }}>{referendum.title}</Text>
+        <Text style={{...styles.title, marginTop: 20}}>{referendum.title}</Text>
         <Text>{referendum.description}</Text>
 
         {referendum.userHasVoted ? (
-          <Text style={styles.voteResult}>You voted: {referendum.userVote}</Text>
+          <Text style={styles.voteResult}>
+            You voted: {referendum.userVote}
+          </Text>
         ) : (
           <View style={styles.voteSection}>
-            <TouchableOpacity onPress={() => handleVote(referendum, 'yes')} style={styles.voteButton}>
+            <TouchableOpacity
+              onPress={() => handleVote(referendum, 'yes')}
+              style={styles.voteButton}>
               <Text>Yes</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => handleVote(referendum, 'no')} style={styles.voteButton}>
+            <TouchableOpacity
+              onPress={() => handleVote(referendum, 'no')}
+              style={styles.voteButton}>
               <Text>No</Text>
             </TouchableOpacity>
           </View>
@@ -48,7 +57,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     backgroundColor: 'white',
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 1 },
+    shadowOffset: {width: 0, height: 1},
     shadowOpacity: 0.22,
     shadowRadius: 2.22,
     elevation: 3,
@@ -82,7 +91,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     marginTop: 20,
     textAlign: 'center',
-  }
+  },
 });
 
 export default ReferendumPrompt;

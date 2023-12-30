@@ -11,7 +11,7 @@ import {
   generateNewAddress,
   getCurrentAddress,
   getPrivateKey,
-} from '../services/WalletService';
+} from '../../assets/mock/WalletService_Mock';
 import {commonStyles} from '../layout/CommonStyles';
 
 const WalletManagementScreen: React.FC = () => {

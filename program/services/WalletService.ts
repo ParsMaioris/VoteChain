@@ -1,32 +1,56 @@
-type Address = string;
-type PrivateKey = string;
+import {ethers} from 'ethers';
+import * as Keychain from 'react-native-keychain';
 
-const mockAddresses: Address[] = [
-  '0x3cB1...d0Ae3',
-  '0x7fB1...e4Bc6',
-  '0x1aF4...9bFf2',
-];
+class OfflineWallet {
+  private offlineEthersWallet: ethers.Wallet;
 
-const mockPrivateKeys: Record<Address, PrivateKey> = {
-  '0x3cB1...d0Ae3': '0x9aFb...c1Df2',
-  '0x7fB1...e4Bc6': '0x7eEd...b9Cf4',
-  '0x1aF4...9bFf2': '0x4cCd...a8Ef3',
-};
+  constructor(ethersWallet: ethers.Wallet) {
+    this.offlineEthersWallet = ethersWallet;
+  }
 
-let addressIndex = 0;
+  get privateKey(): string {
+    return this.offlineEthersWallet.privateKey;
+  }
 
-export const generateNewAddress = (): Address => {
-  const newAddress = mockAddresses[addressIndex % mockAddresses.length];
-  addressIndex++;
-  return newAddress;
-};
+  get address(): string {
+    return this.offlineEthersWallet.address;
+  }
 
-export const getCurrentAddress = (): Address => {
-  return mockAddresses[0];
-};
+  connect(provider: ethers.Provider): ethers.Wallet {
+    return this.offlineEthersWallet.connect(provider);
+  }
+}
 
-export const getPrivateKey = (
-  address: Address,
-): PrivateKey | 'Unknown Address' => {
-  return mockPrivateKeys[address] || 'Unknown Address';
-};
+class OfflineWalletFactory {
+  static create(): OfflineWallet {
+    const randomHDNodeWallet = ethers.Wallet.createRandom();
+    const randomEthersWallet = new ethers.Wallet(randomHDNodeWallet.privateKey);
+    return new OfflineWallet(randomEthersWallet);
+  }
+}
+
+class OfflineWalletKeychainStore {
+  static async save(wallet: OfflineWallet): Promise<void> {
+    try {
+      await Keychain.setGenericPassword('wallet', wallet.privateKey);
+    } catch (error) {
+      console.error('Error saving wallet to keychain:', error);
+    }
+  }
+
+  static async load(): Promise<OfflineWallet | null> {
+    try {
+      const credentials = await Keychain.getGenericPassword();
+      if (credentials) {
+        const ethersWallet = new ethers.Wallet(credentials.password);
+        return new OfflineWallet(ethersWallet);
+      }
+      return null;
+    } catch (error) {
+      console.error('Error loading wallet from keychain:', error);
+      return null;
+    }
+  }
+}
+
+export {OfflineWallet, OfflineWalletFactory, OfflineWalletKeychainStore};

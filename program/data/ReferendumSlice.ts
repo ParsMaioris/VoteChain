@@ -1,7 +1,7 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { getReferendums as fetchReferendums } from './mock/getReferendums';
+import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
+import {getReferendums as fetchReferendums} from '../../assets/mock/FetchReferendums_Mock';
 import Referendum from '../domain/Referendum';
-import { RootState } from './store';
+import {RootState} from './store';
 
 interface ReferendumsState {
   referendums: Referendum[];
@@ -18,22 +18,27 @@ export const getReferendums = createAsyncThunk(
   async () => {
     const response = await fetchReferendums();
     return response;
-  }
+  },
 );
 
 export const castVote = createAsyncThunk(
   'referendums/castVote',
-  async ({ referendum, vote }: { referendum: Referendum; vote: 'yes' | 'no' }, { getState }) => {
-    const referendums = (getState() as RootState).referendums.referendums.map(element => {
-      if (element.id === referendum.id) {
-        return  {...element, userVote: vote, userHasVoted: true}
-      }
+  async (
+    {referendum, vote}: {referendum: Referendum; vote: 'yes' | 'no'},
+    {getState},
+  ) => {
+    const referendums = (getState() as RootState).referendums.referendums.map(
+      element => {
+        if (element.id === referendum.id) {
+          return {...element, userVote: vote, userHasVoted: true};
+        }
 
-      return element;
-    })
+        return element;
+      },
+    );
 
     return referendums;
-  }
+  },
 );
 
 const referendumsSlice = createSlice({
